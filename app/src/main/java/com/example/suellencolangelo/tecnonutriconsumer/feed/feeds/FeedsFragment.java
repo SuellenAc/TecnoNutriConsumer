@@ -16,6 +16,7 @@ import com.example.suellencolangelo.tecnonutriconsumer.author.model.Author;
 import com.example.suellencolangelo.tecnonutriconsumer.base.fragment.BaseFragment;
 import com.example.suellencolangelo.tecnonutriconsumer.feed.detail.FeedDetailsActivity;
 import com.example.suellencolangelo.tecnonutriconsumer.feed.model.Feed;
+import com.example.suellencolangelo.tecnonutriconsumer.utils.GridSpacingItemDecoration;
 
 /**
  * Created by suellencolangelo on 26/02/17.
@@ -62,7 +63,9 @@ public class FeedsFragment extends BaseFragment implements FeedContract.View{
 
     private void configureRecyclerView() {
         if (mShowAsGrid) {
-            mLayoutManager = new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new GridLayoutManager(getContext(), 3);
+            int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.activity_spacing);
+            mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, spacingInPixels, true, 0));
         } else {
             mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         }
