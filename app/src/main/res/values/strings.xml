@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">TecnoNutriConsumer</string>
+    <string name="app_name">Consummer</string>
+    <string name="feeds">Feed</string>
+    <string name="feed_details">Detalhes do Feed</string>
+    <string name="author_details">Detalhes do Autor</string>
 </resources>
