@@ -1,4 +1,4 @@
-package com.example.suellencolangelo.tecnonutriconsumer.feed.feeds;
+package com.example.suellencolangelo.tecnonutriconsumer.item.items;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,31 +12,30 @@ import android.view.ViewGroup;
 
 import com.example.suellencolangelo.tecnonutriconsumer.R;
 import com.example.suellencolangelo.tecnonutriconsumer.author.authorDetail.AuthorDetailActivity;
-import com.example.suellencolangelo.tecnonutriconsumer.author.model.Author;
+import com.example.suellencolangelo.tecnonutriconsumer.model.Item;
+import com.example.suellencolangelo.tecnonutriconsumer.model.Profile;
 import com.example.suellencolangelo.tecnonutriconsumer.base.fragment.BaseFragment;
-import com.example.suellencolangelo.tecnonutriconsumer.feed.detail.FeedDetailsActivity;
-import com.example.suellencolangelo.tecnonutriconsumer.feed.model.Feed;
-import com.example.suellencolangelo.tecnonutriconsumer.utils.GridSpacingItemDecoration;
+import com.example.suellencolangelo.tecnonutriconsumer.item.detail.ItemDetailsActivity;
 
 /**
  * Created by suellencolangelo on 26/02/17.
  */
 
-public class FeedsFragment extends BaseFragment implements FeedContract.View{
+public class ItemsFragment extends BaseFragment implements ItemContract.View{
     public static final String TAG = "FEEDS_FRAGMENT";
     private static final String SHOW_AS_GRID = "SHOW_AS_GRID";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private FeedsAdapter mAdapter;
+    private ItemsAdapter mAdapter;
 
-    private FeedContract.Presenter mPresenter;
+    private ItemContract.Presenter mPresenter;
 
     private Boolean mShowAsGrid;
 
 
-    public static FeedsFragment newInstance(Boolean showAsGrid) {
-        FeedsFragment fragment = new FeedsFragment();
+    public static ItemsFragment newInstance(Boolean showAsGrid) {
+        ItemsFragment fragment = new ItemsFragment();
         Bundle bundle = new Bundle();
         bundle.putBoolean(SHOW_AS_GRID, showAsGrid);
         fragment.setArguments(bundle);
@@ -51,9 +50,10 @@ public class FeedsFragment extends BaseFragment implements FeedContract.View{
         if (getArguments() != null) {
             mShowAsGrid = getArguments().getBoolean(SHOW_AS_GRID, false);
         }
-        mPresenter = new FeedPresenter(this);
+        mPresenter = new ItemPresenter(this);
+        mPresenter.retrieveItems();
 
-        View root = inflater.inflate(R.layout.feeds_fragment, container, false);
+        View root = inflater.inflate(R.layout.items_fragment, container, false);
         mRecyclerView = (RecyclerView) root.findViewById(R.id.feeds_recycler_view);
 
         configureRecyclerView();
@@ -63,26 +63,34 @@ public class FeedsFragment extends BaseFragment implements FeedContract.View{
 
     private void configureRecyclerView() {
         if (mShowAsGrid) {
-            mLayoutManager = new GridLayoutManager(getContext(), 3);
-            int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.activity_spacing);
-            mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, spacingInPixels, true, 0));
+            mLayoutManager = new GridLayoutManager(getContext(), 4);
         } else {
             mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         }
-        mAdapter = new FeedsAdapter(mShowAsGrid, mPresenter);
+        mAdapter = new ItemsAdapter(mShowAsGrid, mPresenter);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
-    public void openAuthor(Author author) {
+    public void openAuthor(Profile profile) {
         Intent i = new Intent(getContext(), AuthorDetailActivity.class);
         startActivity(i);
     }
 
     @Override
-    public void openFeedDetail(Feed feed) {
-        Intent i = new Intent(getContext(), FeedDetailsActivity.class);
+    public void openFeedDetail(Item item) {
+        Intent i = new Intent(getContext(), ItemDetailsActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onItemsRetrieved() {
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCallFailure() {
+
     }
 }

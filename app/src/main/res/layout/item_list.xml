@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="2dp"
+    android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
+
+            <ImageView
+                android:id="@id/feed_author_image"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:id="@id/feed_author_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/feed_author_image"
+                android:layout_toRightOf="@id/feed_author_image"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@id/feed_author_name"
+                    fontPath="fonts/Roboto-Medium.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@string/app_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@id/feed_author_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@string/app_name" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@id/feed_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:minHeight="300dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
+
+            <TextView
+                android:id="@id/feed_date"
+                fontPath="fonts/Roboto-Medium.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/app_name"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@id/feed_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/app_name" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

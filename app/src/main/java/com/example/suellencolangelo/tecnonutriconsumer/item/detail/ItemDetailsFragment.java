@@ -1,4 +1,4 @@
-package com.example.suellencolangelo.tecnonutriconsumer.feed.detail;
+package com.example.suellencolangelo.tecnonutriconsumer.item.detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,11 +13,11 @@ import com.example.suellencolangelo.tecnonutriconsumer.base.fragment.BaseFragmen
  * Created by suellencolangelo on 26/02/17.
  */
 
-public class FeedDetailsFragment extends BaseFragment {
+public class ItemDetailsFragment extends BaseFragment {
     public static final String TAG = "FEED_DETAILS_FRAGMENT";
 
-    public static FeedDetailsFragment newInstance(Bundle bundle) {
-        FeedDetailsFragment fragment = new FeedDetailsFragment();
+    public static ItemDetailsFragment newInstance(Bundle bundle) {
+        ItemDetailsFragment fragment = new ItemDetailsFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -27,7 +27,7 @@ public class FeedDetailsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View root = inflater.inflate(R.layout.feed_details_fragment, container, false);
+        View root = inflater.inflate(R.layout.item_details_fragment, container, false);
         return root;
     }
 }

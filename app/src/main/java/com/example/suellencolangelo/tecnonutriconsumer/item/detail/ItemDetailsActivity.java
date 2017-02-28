@@ -1,4 +1,4 @@
-package com.example.suellencolangelo.tecnonutriconsumer.feed.detail;
+package com.example.suellencolangelo.tecnonutriconsumer.item.detail;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,14 +11,14 @@ import com.example.suellencolangelo.tecnonutriconsumer.base.activity.BaseActivit
  * Created by suellencolangelo on 27/02/17.
  */
 
-public class FeedDetailsActivity extends BaseActivity {
+public class ItemDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
 
-        FeedDetailsFragment feedDetailsFragment = FeedDetailsFragment.newInstance(getIntent().getExtras());
-        openFragment(feedDetailsFragment, FeedDetailsFragment.TAG, R.id.main_fragment_container);
+        ItemDetailsFragment itemDetailsFragment = ItemDetailsFragment.newInstance(getIntent().getExtras());
+        openFragment(itemDetailsFragment, ItemDetailsFragment.TAG, R.id.main_fragment_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);

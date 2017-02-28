@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.suellencolangelo.tecnonutriconsumer.R;
 import com.example.suellencolangelo.tecnonutriconsumer.base.fragment.BaseFragment;
-import com.example.suellencolangelo.tecnonutriconsumer.feed.detail.FeedDetailsFragment;
-import com.example.suellencolangelo.tecnonutriconsumer.feed.feeds.FeedsFragment;
+import com.example.suellencolangelo.tecnonutriconsumer.item.items.ItemsFragment;
 
 /**
  * Created by suellencolangelo on 26/02/17.
@@ -30,11 +29,11 @@ public class AuthorDetailFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View root = inflater.inflate(R.layout.author_details_fragment, container, false);
+        View root = inflater.inflate(R.layout.profile_details_fragment, container, false);
 
 
-        FeedsFragment feedsFragment = FeedsFragment.newInstance(true);
-        openFragment(R.id.author_details_feeds_container, feedsFragment);
+        ItemsFragment itemsFragment = ItemsFragment.newInstance(true);
+        openFragment(R.id.author_details_feeds_container, itemsFragment);
         return root;
     }
 

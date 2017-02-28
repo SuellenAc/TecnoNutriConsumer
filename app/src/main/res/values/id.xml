@@ -2,7 +2,7 @@
 <resources>
     <item name="feeds_recycler_view" type="id"/>
 
-    <!--Feed Item-->
+    <!--Item Item-->
     <item name="feed_author_image" type="id"/>
     <item name="feed_author_name" type="id"/>
     <item name="feed_author_goal" type="id"/>
