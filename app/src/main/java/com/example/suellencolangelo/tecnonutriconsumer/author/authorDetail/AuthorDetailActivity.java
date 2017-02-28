@@ -24,5 +24,6 @@ public class AuthorDetailActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.author_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 }

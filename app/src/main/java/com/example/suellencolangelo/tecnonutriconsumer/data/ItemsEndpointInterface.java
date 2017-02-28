@@ -1,5 +1,7 @@
 package com.example.suellencolangelo.tecnonutriconsumer.data;
 
+import com.example.suellencolangelo.tecnonutriconsumer.model.Item;
+import com.example.suellencolangelo.tecnonutriconsumer.model.ItemRequest;
 import com.example.suellencolangelo.tecnonutriconsumer.model.ItemsRequestData;
 
 import retrofit2.Call;
@@ -11,11 +13,13 @@ import retrofit2.http.Path;
  */
 
 public interface ItemsEndpointInterface {
+    @GET("api/v4/feed/")
+    Call<ItemsRequestData> getItems();
 
-        @GET("api/v4/feed")
-        Call<ItemsRequestData> getItems();
+    @GET("api/v4/feed?p={p}&t={t}/")
+    Call<ItemsRequestData> getOldItems(@Path("p") int pagination, @Path("t") int track);
 
-        @GET("api/v4/feed?p={p}&t={t}")
-        Call<ItemsRequestData> getOldItems(@Path("p") int pagination, @Path("t") int track);
+    @GET("api/v4/feed/{feedHash}/")
+    Call<ItemRequest> getItem(@Path("feedHash") String hash);
 
 }

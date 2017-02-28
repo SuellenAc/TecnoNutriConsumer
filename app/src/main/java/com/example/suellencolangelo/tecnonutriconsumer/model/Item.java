@@ -1,9 +1,12 @@
 package com.example.suellencolangelo.tecnonutriconsumer.model;
 
+import org.parceler.Parcel;
+
 /**
  * Created by suellencolangelo on 26/02/17.
  */
 
+@Parcel(Parcel.Serialization.BEAN)
 public class Item {
     private String feedHash;
     private Integer id;

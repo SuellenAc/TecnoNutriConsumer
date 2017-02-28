@@ -17,6 +17,8 @@ import com.example.suellencolangelo.tecnonutriconsumer.model.Profile;
 import com.example.suellencolangelo.tecnonutriconsumer.base.fragment.BaseFragment;
 import com.example.suellencolangelo.tecnonutriconsumer.item.detail.ItemDetailsActivity;
 
+import org.parceler.Parcels;
+
 /**
  * Created by suellencolangelo on 26/02/17.
  */
@@ -81,6 +83,7 @@ public class ItemsFragment extends BaseFragment implements ItemContract.View{
     @Override
     public void openFeedDetail(Item item) {
         Intent i = new Intent(getContext(), ItemDetailsActivity.class);
+        i.putExtra(ItemDetailsActivity.FEED, Parcels.wrap(item));
         startActivity(i);
     }
 

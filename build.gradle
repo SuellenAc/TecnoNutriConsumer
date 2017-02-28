@@ -31,5 +31,8 @@ ext {
     parceller = '1.1.6'
     junit = '4.12'
     expresso = '2.2.2'
+    gson = '2.7'
+    retrofit = '2.1.0'
+    retrofitJsonConverter = '2.1.0'
 
 }

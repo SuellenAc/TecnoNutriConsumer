@@ -16,7 +16,7 @@ import retrofit2.Response;
  * Created by suellencolangelo on 26/02/17.
  */
 
-public class ItemPresenter implements ItemContract.Presenter {
+public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequestData> {
     private List<Item> mItems;
     private ItemContract.View mView;
 
@@ -29,22 +29,8 @@ public class ItemPresenter implements ItemContract.Presenter {
     public void retrieveItems() {
         ItemsEndpointInterface apiService =
                 RetrofitBase.createRetrofitInstance().create(ItemsEndpointInterface.class);
-
         Call<ItemsRequestData> call = apiService.getItems();
-        call.enqueue(new Callback<ItemsRequestData>() {
-            @Override
-            public void onResponse(Call<ItemsRequestData> call, Response<ItemsRequestData> response) {
-                if (response.isSuccessful()){
-                    mItems = response.body().getItems();
-                    mView.onItemsRetrieved();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ItemsRequestData> call, Throwable t) {
-                mView.onCallFailure();
-            }
-        });
+        call.enqueue(this);
     }
 
     @Override
@@ -76,5 +62,19 @@ public class ItemPresenter implements ItemContract.Presenter {
     @Override
     public void onFeedClick(int position) {
         mView.openFeedDetail(getItem(position));
+    }
+
+
+    @Override
+    public void onResponse(Call<ItemsRequestData> call, Response<ItemsRequestData> response) {
+        if (response.isSuccessful()){
+            mItems = response.body().getItems();
+            mView.onItemsRetrieved();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ItemsRequestData> call, Throwable t) {
+        mView.onCallFailure();
     }
 }

@@ -12,6 +12,8 @@ import com.example.suellencolangelo.tecnonutriconsumer.base.activity.BaseActivit
  */
 
 public class ItemDetailsActivity extends BaseActivity {
+    public static final String FEED = "FEED";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class ItemDetailsActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.feed_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
 }

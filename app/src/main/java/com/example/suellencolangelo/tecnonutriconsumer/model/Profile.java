@@ -1,9 +1,12 @@
 package com.example.suellencolangelo.tecnonutriconsumer.model;
 
+import org.parceler.Parcel;
+
 /**
  * Created by suellencolangelo on 27/02/17.
  */
 
+@Parcel(Parcel.Serialization.BEAN)
 public class Profile {
 
     private Integer id;

@@ -2,7 +2,7 @@
 <resources>
     <item name="feeds_recycler_view" type="id"/>
 
-    <!--Item Item-->
+    <!--Item -->
     <item name="feed_author_image" type="id"/>
     <item name="feed_author_name" type="id"/>
     <item name="feed_author_goal" type="id"/>
@@ -10,6 +10,17 @@
     <item name="feed_date" type="id"/>
     <item name="feed_kcal" type="id"/>
     <item name="feed_author_profile" type="id"/>
+
+
+    <!-- Item Details-->
+    <item name="feed_detail_author_image" type="id"/>
+    <item name="feed_detail_author_name" type="id"/>
+    <item name="feed_detail_author_goal" type="id"/>
+    <item name="feed_detail_image" type="id"/>
+    <item name="feed_detail_date" type="id"/>
+    <item name="feed_detail_kcal" type="id"/>
+    <item name="feed_detail_author_profile" type="id"/>
+    <item name="feed_detail_swipe_refresh_layout" type="id"/>
 
     <!-- Authoer Details-->
     <item name="author_details_feeds_container" type="id"/>
