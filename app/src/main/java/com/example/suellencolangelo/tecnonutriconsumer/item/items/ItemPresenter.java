@@ -1,12 +1,11 @@
 package com.example.suellencolangelo.tecnonutriconsumer.item.items;
 
-import com.example.suellencolangelo.tecnonutriconsumer.data.ItemsEndpointInterface;
+import android.text.TextUtils;
+
+import com.example.suellencolangelo.tecnonutriconsumer.data.ItemsEndpoint;
 import com.example.suellencolangelo.tecnonutriconsumer.data.RetrofitBase;
 import com.example.suellencolangelo.tecnonutriconsumer.model.Item;
-import com.example.suellencolangelo.tecnonutriconsumer.model.ItemsRequestData;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.suellencolangelo.tecnonutriconsumer.model.ItemsRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,42 +15,43 @@ import retrofit2.Response;
  * Created by suellencolangelo on 26/02/17.
  */
 
-public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequestData> {
-    private List<Item> mItems;
+public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequest> {
+    private ItemsRequest mItemsRequest;
     private ItemContract.View mView;
 
     public ItemPresenter(ItemContract.View view) {
         this.mView = view;
-        mItems = new ArrayList<>();
+        mItemsRequest = new ItemsRequest();
     }
 
     @Override
     public void retrieveItems() {
-        ItemsEndpointInterface apiService =
-                RetrofitBase.createRetrofitInstance().create(ItemsEndpointInterface.class);
-        Call<ItemsRequestData> call = apiService.getItems();
+        ItemsEndpoint apiService = RetrofitBase.getInstance().create(ItemsEndpoint.class);
+        Call<ItemsRequest> call = apiService.getItems();
         call.enqueue(this);
     }
 
     @Override
     public void retrieveOldItems() {
-
+        ItemsEndpoint apiService = RetrofitBase.getInstance().create(ItemsEndpoint.class);
+        Call<ItemsRequest> call = apiService.getOldItems(mItemsRequest.getP() + 1, mItemsRequest.getT());
+        call.enqueue(this);
     }
 
     @Override
     public int itemCount() {
-        if (mItems != null) {
-            return mItems.size();
+        if (mItemsRequest != null) {
+            return mItemsRequest.getItems().size();
         }
         return 0;
     }
 
     @Override
     public Item getItem(int position) {
-        if (mItems != null) {
-            return mItems.get(position);
+        if (mItemsRequest != null) {
+            return mItemsRequest.getItems().get(position);
         }
-        return null;
+        return new Item();
     }
 
     @Override
@@ -66,15 +66,36 @@ public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequ
 
 
     @Override
-    public void onResponse(Call<ItemsRequestData> call, Response<ItemsRequestData> response) {
-        if (response.isSuccessful()){
-            mItems = response.body().getItems();
+    public void onResponse(Call<ItemsRequest> call, Response<ItemsRequest> response) {
+        // Verifica se é primeira requisição, nesse caso substitui os dados pelos da requisição.
+
+        String query = call.request().url().query();
+        boolean isFirstRequest = TextUtils.isEmpty(query);
+
+        if (response.isSuccessful()) {
+            if (isFirstRequest) {
+                mItemsRequest = response.body();
+            } else {
+                mItemsRequest.copyAndAdd(response.body());
+            }
+            if (mItemsRequest.getItems().size() == 0) {
+                mView.showNoDataView();
+            } else {
+                mView.hideNoDataView();
+            }
             mView.onItemsRetrieved();
+        } else {
+            mView.onFailure();
         }
     }
 
     @Override
-    public void onFailure(Call<ItemsRequestData> call, Throwable t) {
-        mView.onCallFailure();
+    public void onFailure(Call<ItemsRequest> call, Throwable t) {
+        if (mItemsRequest.getItems().size() == 0) {
+            mView.showNoDataView();
+        } else {
+            mView.hideNoDataView();
+        }
+        mView.onFailure();
     }
 }

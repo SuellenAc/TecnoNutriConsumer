@@ -13,7 +13,9 @@ public interface ItemContract {
         void openAuthor(Profile profile);
         void openFeedDetail(Item item);
         void onItemsRetrieved();
-        void onCallFailure();
+        void onFailure();
+        void showNoDataView();
+        void hideNoDataView();
     }
 
     // Implementado pelo Presenter

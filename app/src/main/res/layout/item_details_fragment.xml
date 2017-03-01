@@ -16,61 +16,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:paddingEnd="16dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingStart="16dp">
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:id="@id/feed_detail_author_image"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:src="@android:color/darker_gray" />
-
-                    <LinearLayout
-                        android:id="@id/feed_detail_author_profile"
+                    <include
+                        layout="@layout/profile_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/feed_detail_author_image"
-                        android:layout_toRightOf="@id/feed_detail_author_image"
-                        android:orientation="vertical">
 
-                        <TextView
-                            android:id="@id/feed_detail_author_name"
-                            fontPath="fonts/Roboto-Medium.ttf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            android:text="@string/app_name"
-                            android:textColor="@android:color/black"
-                            android:textSize="16sp" />
+                        />
+                </FrameLayout>
 
-                        <TextView
-                            android:id="@id/feed_detail_author_goal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            android:text="@string/app_name" />
-                    </LinearLayout>
-                </RelativeLayout>
 
                 <ImageView
                     android:id="@id/feed_detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:minHeight="300dp" />
 
 
@@ -78,10 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingEnd="16dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingStart="16dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:id="@id/feed_detail_date"

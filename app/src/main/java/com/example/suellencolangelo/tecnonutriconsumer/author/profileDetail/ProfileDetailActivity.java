@@ -1,4 +1,4 @@
-package com.example.suellencolangelo.tecnonutriconsumer.author.authorDetail;
+package com.example.suellencolangelo.tecnonutriconsumer.author.profileDetail;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,20 +10,22 @@ import com.example.suellencolangelo.tecnonutriconsumer.base.activity.BaseActivit
  * Created by suellencolangelo on 27/02/17.
  */
 
-public class AuthorDetailActivity extends BaseActivity {
+public class ProfileDetailActivity extends BaseActivity {
+    public static final String PROFILE = "PROFILE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
 
-        AuthorDetailFragment authorDetailsFragment = AuthorDetailFragment.newInstance(getIntent().getExtras());
-        openFragment(authorDetailsFragment, AuthorDetailFragment.TAG, R.id.main_fragment_container);
+        ProfileDetailFragment authorDetailsFragment = ProfileDetailFragment.newInstance(getIntent().getExtras());
+        openFragment(authorDetailsFragment, ProfileDetailFragment.TAG, R.id.main_fragment_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.author_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
     }
 }

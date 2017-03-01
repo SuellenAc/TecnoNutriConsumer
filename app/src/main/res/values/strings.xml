@@ -3,4 +3,7 @@
     <string name="feeds">Feed</string>
     <string name="feed_details">Detalhes do Feed</string>
     <string name="author_details">Detalhes do Autor</string>
+    <string name="loading_data">Buscando dados...</string>
+    <string name="no_data">Não há dados disponíveis no momento.</string>
+    <string name="error">Ocorreu um erro ao buscar dados. Tente novamente mais tarde</string>
 </resources>

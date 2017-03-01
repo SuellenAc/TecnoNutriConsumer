@@ -46,9 +46,9 @@ public class ItemDetailsFragment extends BaseFragment implements ItemDetailsCont
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.item_details_fragment, container, false);
-        mAuthorName = (TextView) root.findViewById(R.id.feed_detail_author_name);
-        mAuthorGoal = (TextView) root.findViewById(R.id.feed_detail_author_goal);
-        mAuthorImage = (ImageView) root.findViewById(R.id.feed_detail_author_image);
+        mAuthorName = (TextView) root.findViewById(R.id.author_name);
+        mAuthorGoal = (TextView) root.findViewById(R.id.author_goal);
+        mAuthorImage = (ImageView) root.findViewById(R.id.author_image);
         mFeedKcal = (TextView) root.findViewById(R.id.feed_detail_kcal);
         mDate = (TextView) root.findViewById(R.id.feed_detail_date);
         mImage = (ImageView) root.findViewById(R.id.feed_detail_image);
@@ -85,6 +85,8 @@ public class ItemDetailsFragment extends BaseFragment implements ItemDetailsCont
         Glide.with(getContext())
                 .load(item.getProfile().getImage())
                 .transform(new GlideCircleTransform(getContext()))
+                .placeholder(R.drawable.circular_border)
+                .error(R.drawable.circular_border)
                 .into(mAuthorImage);
 
         // Dados do item
@@ -95,13 +97,17 @@ public class ItemDetailsFragment extends BaseFragment implements ItemDetailsCont
                 .load(item.getImage())
                 .crossFade()
                 .centerCrop()
+                .placeholder(R.color.image_place_holder_background)
+                .error(R.color.image_place_holder_background)
                 .into(mImage);
+
         // kcal
         mFeedKcal.setText(Float.toString(item.getCarbohydrate()));
     }
 
     @Override
     public void showError() {
+        showDownloadErrorToast();
         mSwipeLayout.setRefreshing(false);
     }
 

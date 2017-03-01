@@ -1,5 +1,7 @@
 package com.example.suellencolangelo.tecnonutriconsumer.data;
 
+import android.content.Context;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,13 +12,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitBase {
     public static final String BASE_URL = "http://api.tecnonutri.com.br/";
 
-    public static Retrofit createRetrofitInstance(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    private static RetrofitBase mInstance;
+    private Retrofit mRetrofit;
 
-        return retrofit;
+    private RetrofitBase() {
+    }
+
+    private Retrofit getRetrofit() {
+        if (mRetrofit == null) {
+            mRetrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return mRetrofit;
+    }
+
+    public static synchronized Retrofit getInstance() {
+        if (mInstance == null) {
+            mInstance = new RetrofitBase();
+        }
+        return mInstance.getRetrofit();
     }
 
 }

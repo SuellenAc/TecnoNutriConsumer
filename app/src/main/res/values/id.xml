@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="feeds_recycler_view" type="id"/>
+    <item name="feeds_swipe_refresh_layout" type="id"/>
+    <item name="feeds_loading_more" type="id"/>
+    <item name="feeds_no_data_message" type="id"/>
 
     <!--Item -->
-    <item name="feed_author_image" type="id"/>
-    <item name="feed_author_name" type="id"/>
-    <item name="feed_author_goal" type="id"/>
     <item name="feed_image" type="id"/>
     <item name="feed_date" type="id"/>
     <item name="feed_kcal" type="id"/>
     <item name="feed_author_profile" type="id"/>
 
-
     <!-- Item Details-->
-    <item name="feed_detail_author_image" type="id"/>
-    <item name="feed_detail_author_name" type="id"/>
-    <item name="feed_detail_author_goal" type="id"/>
     <item name="feed_detail_image" type="id"/>
     <item name="feed_detail_date" type="id"/>
     <item name="feed_detail_kcal" type="id"/>
@@ -23,6 +19,17 @@
     <item name="feed_detail_swipe_refresh_layout" type="id"/>
 
     <!-- Authoer Details-->
-    <item name="author_details_feeds_container" type="id"/>
+    <item name="author_swipe_refresh_layout" type="id"/>
+    <item name="author_recycler_view" type="id"/>
+
+    <!--Author Header-->
+    <item name="author_image" type="id"/>
+    <item name="author_name" type="id"/>
+    <item name="author_goal" type="id"/>
+
+    <!-- Loading Data-->
+    <item name="loading_progress_bar" type="id"/>
+    <item name="loading_status_message" type="id"/>
+
 
 </resources>

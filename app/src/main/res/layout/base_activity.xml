@@ -10,7 +10,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        app:theme="@style/ThemeOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@id/action_bar"

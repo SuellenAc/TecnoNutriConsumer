@@ -4,23 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
-        <TextView
+        <include
+            layout="@layout/profile_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </FrameLayout>
 
-    </LinearLayout>
-
-
-    <FrameLayout
-        android:id="@id/author_details_feeds_container"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/author_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/author_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

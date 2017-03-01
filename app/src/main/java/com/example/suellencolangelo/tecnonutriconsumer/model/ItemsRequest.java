@@ -7,13 +7,13 @@ import java.util.List;
  * Created by suellencolangelo on 27/02/17.
  */
 
-public class ItemsRequestData {
+public class ItemsRequest {
     private Boolean success;
     private Integer t;
     private Integer p;
     private List<Item> items;
 
-    public ItemsRequestData(){
+    public ItemsRequest() {
         items = new ArrayList<>();
     }
 
@@ -48,4 +48,15 @@ public class ItemsRequestData {
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
+    /***
+     * Copia os campos e adicionar os registros de feed ao fim da lista de items
+     */
+    public void copyAndAdd(ItemsRequest anotherItemRequest) {
+        setP(anotherItemRequest.getP());
+        setT(anotherItemRequest.getT());
+        setSuccess(anotherItemRequest.getSuccess());
+        getItems().addAll(anotherItemRequest.getItems());
+    }
+
 }

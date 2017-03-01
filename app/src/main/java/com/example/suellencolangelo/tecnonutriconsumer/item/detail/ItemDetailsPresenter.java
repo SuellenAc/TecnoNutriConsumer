@@ -2,7 +2,7 @@ package com.example.suellencolangelo.tecnonutriconsumer.item.detail;
 
 import android.support.annotation.NonNull;
 
-import com.example.suellencolangelo.tecnonutriconsumer.data.ItemsEndpointInterface;
+import com.example.suellencolangelo.tecnonutriconsumer.data.ItemsEndpoint;
 import com.example.suellencolangelo.tecnonutriconsumer.data.RetrofitBase;
 import com.example.suellencolangelo.tecnonutriconsumer.model.Item;
 import com.example.suellencolangelo.tecnonutriconsumer.model.ItemRequest;
@@ -33,8 +33,8 @@ public class ItemDetailsPresenter implements ItemDetailsContract.Presenter, Call
 
     @Override
     public void updateItem() {
-        ItemsEndpointInterface apiService =
-                RetrofitBase.createRetrofitInstance().create(ItemsEndpointInterface.class);
+        ItemsEndpoint apiService =
+                RetrofitBase.getInstance().create(ItemsEndpoint.class);
         Call<ItemRequest> call = apiService.getItem(mItem.getFeedHash());
         call.enqueue(this);
     }

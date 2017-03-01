@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:background="@android:color/white">
+
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/feeds_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">            
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@id/feeds_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"/>
+            android:background="@color/feed_background" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <include
+            android:id="@id/feeds_loading_more"
+            layout="@layout/loading_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@id/feeds_no_data_message"
+        fontPath="fonts/Roboto-Medium.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        android:gravity="center"
+        android:text="@string/no_data"
+        android:textColor="@color/image_place_holder_background"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

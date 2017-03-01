@@ -21,7 +21,7 @@
 
         <activity android:name=".item.detail.ItemDetailsActivity" />
 
-        <activity android:name=".author.authorDetail.AuthorDetailActivity" />
+        <activity android:name=".author.profileDetail.ProfileDetailActivity" />
 
     </application>
 

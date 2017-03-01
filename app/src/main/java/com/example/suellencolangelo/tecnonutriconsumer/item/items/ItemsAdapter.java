@@ -17,85 +17,61 @@ import com.example.suellencolangelo.tecnonutriconsumer.utils.glide.GlideCircleTr
  * Created by suellencolangelo on 26/02/17.
  */
 
-public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ListViewHolder> {
     private ItemContract.Presenter mPresenter;
-    private Boolean mShowAsGrid;
 
-    public ItemsAdapter(Boolean showAsGrid, ItemContract.Presenter presenter) {
+
+    public ItemsAdapter(ItemContract.Presenter presenter) {
         this.mPresenter = presenter;
-        this.mShowAsGrid = showAsGrid;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public ItemsAdapter.ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
-        if (mShowAsGrid) {
-            // Infla o layout da célula da grid
-            View gridItem = inflater.inflate(R.layout.item_grid, parent, false);
-            return new GridViewHolder(gridItem);
-        }
-         else {
-            // Infla o layout da célula da lista
-            View listItem = inflater.inflate(R.layout.item_list, parent, false);
-            return new ListViewHolder(listItem);
-        }
+        // Infla o layout da célula da lista
+        View listItem = inflater.inflate(R.layout.item_list, parent, false);
+        return new ListViewHolder(listItem);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ItemsAdapter.ListViewHolder holder, int position) {
         Item item = mPresenter.getItem(position);
         if (item == null) {
             return;
         }
-        if (holder instanceof ListViewHolder){
-            ListViewHolder listHolder = (ListViewHolder) holder;
-            // Nome do Author
-            listHolder.mAuthorName.setText(item.getProfile().getName());
-            // Meta do Author
-            listHolder.mAuthorGoal.setText(item.getProfile().getGeneralGoal());
-            // image de perfil do Author
-            Glide.with(listHolder.mAuthorImage.getContext())
-                    .load(item.getProfile().getImage())
-                    .transform(new GlideCircleTransform(listHolder.mAuthorImage.getContext()))
-                    .into(listHolder.mAuthorImage);
 
-            // Dados do item
-            //Data
-            listHolder.mDate.setText(item.getDate());
-            // image do prato
-            Glide.with(listHolder.mImage.getContext())
-                    .load(item.getImage())
-                    .crossFade()
-                    .centerCrop()
-                    .into(listHolder.mImage);
-            // kcal
-            listHolder.mFeedKcal.setText(Float.toString(item.getCarbohydrate()));
+        // Nome do Author
+        holder.mAuthorName.setText(item.getProfile().getName());
+        // Meta do Author
+        holder.mAuthorGoal.setText(item.getProfile().getGeneralGoal());
+        // image de perfil do Author
 
-        }
+        Glide.with(holder.mAuthorImage.getContext())
+                .load(item.getProfile().getImage())
+                .transform(new GlideCircleTransform(holder.mAuthorImage.getContext()))
+                .placeholder(R.drawable.circular_border)
+                .error(R.drawable.circular_border)
+                .into(holder.mAuthorImage);
 
+        // Dados do item
+        //Data
+        holder.mDate.setText(item.getDate());
+        // image do prato
+        Glide.with(holder.mImage.getContext())
+                .load(item.getImage())
+                .crossFade()
+                .centerCrop()
+                .placeholder(R.color.image_place_holder_background)
+                .error(R.color.image_place_holder_background)
+                .into(holder.mImage);
+        // kcal
+        holder.mFeedKcal.setText(Float.toString(item.getCarbohydrate()));
     }
 
     @Override
     public int getItemCount() {
         return mPresenter.itemCount();
-    }
-
-    public class GridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView mImage;
-
-        GridViewHolder(View item) {
-            super(item);
-            mImage = (ImageView) item.findViewById(R.id.feed_image);
-            item.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            mPresenter.onFeedClick(getLayoutPosition());
-        }
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -109,9 +85,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         ListViewHolder(View item) {
             super(item);
-            mAuthorName = (TextView) item.findViewById(R.id.feed_author_name);
-            mAuthorGoal = (TextView) item.findViewById(R.id.feed_author_goal);
-            mAuthorImage = (ImageView) item.findViewById(R.id.feed_author_image);
+            mAuthorName = (TextView) item.findViewById(R.id.author_name);
+            mAuthorGoal = (TextView) item.findViewById(R.id.author_goal);
+            mAuthorImage = (ImageView) item.findViewById(R.id.author_image);
             mFeedKcal = (TextView) item.findViewById(R.id.feed_kcal);
             mDate = (TextView) item.findViewById(R.id.feed_date);
             mImage = (ImageView) item.findViewById(R.id.feed_image);

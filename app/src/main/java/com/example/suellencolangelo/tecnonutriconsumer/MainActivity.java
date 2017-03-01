@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
 
-        mItemsFragment = ItemsFragment.newInstance(false);
+        mItemsFragment = ItemsFragment.newInstance();
         openFragment(mItemsFragment, ItemsFragment.TAG, R.id.main_fragment_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);

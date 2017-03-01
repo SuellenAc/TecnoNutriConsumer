@@ -9,6 +9,6 @@
         android:id="@id/feed_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@android:color/holo_green_dark"/>
+        android:background="@color/image_place_holder_background"/>
 
 </LinearLayout>
