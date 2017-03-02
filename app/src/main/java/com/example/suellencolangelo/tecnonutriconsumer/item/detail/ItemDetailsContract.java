@@ -14,8 +14,12 @@ public interface ItemDetailsContract {
     }
 
     interface Presenter {
+        void setView(ItemDetailsContract.View view);
         Item getItem();
         void updateItem();
+        int getItemCount();
+        // Retorna o objeto que o adapter deve mostrar - pode ser item ou food.
+        Object getObjectAdapter(int position);
     }
 
 }

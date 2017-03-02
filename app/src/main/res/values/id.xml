@@ -12,10 +12,7 @@
     <item name="feed_author_profile" type="id"/>
 
     <!-- Item Details-->
-    <item name="feed_detail_image" type="id"/>
-    <item name="feed_detail_date" type="id"/>
-    <item name="feed_detail_kcal" type="id"/>
-    <item name="feed_detail_author_profile" type="id"/>
+    <item name="feed_recycler_view" type="id"/>
     <item name="feed_detail_swipe_refresh_layout" type="id"/>
 
     <!-- Authoer Details-->
@@ -30,6 +27,15 @@
     <!-- Loading Data-->
     <item name="loading_progress_bar" type="id"/>
     <item name="loading_status_message" type="id"/>
+
+    <!-- foods-->
+    <item name="food_name" type="id"/>
+    <item name="food_unit" type="id"/>
+    <item name="food_calories" type="id"/>
+    <item name="food_carbs" type="id"/>
+    <item name="food_protein" type="id"/>
+    <item name="food_fats" type="id"/>
+
 
 
 </resources>

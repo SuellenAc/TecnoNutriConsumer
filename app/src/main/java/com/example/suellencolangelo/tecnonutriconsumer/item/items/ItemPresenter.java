@@ -25,6 +25,11 @@ public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequ
     }
 
     @Override
+    public void setView(ItemContract.View view) {
+        this.mView = view;
+    }
+
+    @Override
     public void retrieveItems() {
         ItemsEndpoint apiService = RetrofitBase.getInstance().create(ItemsEndpoint.class);
         Call<ItemsRequest> call = apiService.getItems();
@@ -56,19 +61,24 @@ public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequ
 
     @Override
     public void onAuthorClick(int position) {
-        mView.openAuthor(getItem(position).getProfile());
+        if (mView != null) {
+            mView.openAuthor(getItem(position).getProfile());
+        }
     }
 
     @Override
     public void onFeedClick(int position) {
-        mView.openFeedDetail(getItem(position));
+        if (mView != null) {
+            mView.openFeedDetail(getItem(position));
+        }
     }
-
 
     @Override
     public void onResponse(Call<ItemsRequest> call, Response<ItemsRequest> response) {
         // Verifica se é primeira requisição, nesse caso substitui os dados pelos da requisição.
-
+        if (mView==null){
+            return;
+        }
         String query = call.request().url().query();
         boolean isFirstRequest = TextUtils.isEmpty(query);
 
@@ -91,6 +101,9 @@ public class ItemPresenter implements ItemContract.Presenter, Callback<ItemsRequ
 
     @Override
     public void onFailure(Call<ItemsRequest> call, Throwable t) {
+        if (mView==null){
+            return;
+        }
         if (mItemsRequest.getItems().size() == 0) {
             mView.showNoDataView();
         } else {

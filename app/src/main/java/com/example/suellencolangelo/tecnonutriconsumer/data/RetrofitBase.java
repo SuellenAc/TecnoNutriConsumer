@@ -2,6 +2,9 @@ package com.example.suellencolangelo.tecnonutriconsumer.data;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,9 +23,14 @@ public class RetrofitBase {
 
     private Retrofit getRetrofit() {
         if (mRetrofit == null) {
+            // formato de data
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd")
+                    .create();
+
             mRetrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return mRetrofit;

@@ -1,6 +1,7 @@
 package com.example.suellencolangelo.tecnonutriconsumer.item.items;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.suellencolangelo.tecnonutriconsumer.R;
 import com.example.suellencolangelo.tecnonutriconsumer.model.Item;
+import com.example.suellencolangelo.tecnonutriconsumer.utils.DateUtils;
 import com.example.suellencolangelo.tecnonutriconsumer.utils.glide.GlideCircleTransform;
 
 /**
@@ -40,6 +42,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ListViewHold
         if (item == null) {
             return;
         }
+        Context context = holder.mDate.getContext();
 
         // Nome do Author
         holder.mAuthorName.setText(item.getProfile().getName());
@@ -47,16 +50,22 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ListViewHold
         holder.mAuthorGoal.setText(item.getProfile().getGeneralGoal());
         // image de perfil do Author
 
-        Glide.with(holder.mAuthorImage.getContext())
+        Glide.with(context)
                 .load(item.getProfile().getImage())
-                .transform(new GlideCircleTransform(holder.mAuthorImage.getContext()))
+                .transform(new GlideCircleTransform(context))
                 .placeholder(R.drawable.circular_border)
                 .error(R.drawable.circular_border)
                 .into(holder.mAuthorImage);
 
         // Dados do item
         //Data
-        holder.mDate.setText(item.getDate());
+        try {
+            String mealDate = context.getResources().getString(R.string.meal_date, DateUtils.dateToString(item.getDate(), DateUtils.DATE_ONLY_FORMAT));
+            holder.mDate.setText(mealDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // image do prato
         Glide.with(holder.mImage.getContext())
                 .load(item.getImage())
@@ -65,8 +74,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ListViewHold
                 .placeholder(R.color.image_place_holder_background)
                 .error(R.color.image_place_holder_background)
                 .into(holder.mImage);
+
         // kcal
-        holder.mFeedKcal.setText(Float.toString(item.getCarbohydrate()));
+        holder.mFeedKcal.setText(context.getResources().getString(R.string.meal_kcal, item.getCarbohydrate()));
     }
 
     @Override

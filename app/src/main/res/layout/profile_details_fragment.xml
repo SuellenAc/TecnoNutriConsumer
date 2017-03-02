@@ -15,6 +15,11 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/image_place_holder_background"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@id/author_swipe_refresh_layout"
         android:layout_width="match_parent"

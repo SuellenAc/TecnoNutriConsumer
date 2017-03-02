@@ -20,6 +20,7 @@ public interface ItemContract {
 
     // Implementado pelo Presenter
     interface Presenter {
+        void setView(ItemContract.View view);
         void retrieveItems();
         void retrieveOldItems();
         int itemCount();

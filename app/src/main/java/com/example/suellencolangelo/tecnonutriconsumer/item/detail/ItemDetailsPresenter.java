@@ -27,6 +27,11 @@ public class ItemDetailsPresenter implements ItemDetailsContract.Presenter, Call
     }
 
     @Override
+    public void setView(ItemDetailsContract.View view) {
+        this.mView = view;
+    }
+
+    @Override
     public Item getItem() {
         return mItem;
     }
@@ -40,9 +45,26 @@ public class ItemDetailsPresenter implements ItemDetailsContract.Presenter, Call
     }
 
     @Override
+    public int getItemCount() {
+        return mItem.getFoods().size() + 2; // Dados do autor + total
+    }
+
+    @Override
+    public Object getObjectAdapter(int position) {
+        if (position==0 || position==getItemCount()-1){
+            return mItem;
+        }
+        return mItem.getFoods().get(position-1);
+    }
+
+    @Override
     public void onResponse(Call<ItemRequest> call, Response<ItemRequest> response) {
+        if (mView == null) {
+            return;
+        }
         if (response.isSuccessful()) {
-            mView.reloadData(response.body().getItem());
+            mItem = response.body().getItem();
+            mView.reloadData(mItem);
         } else {
             mView.showError();
         }
@@ -50,6 +72,8 @@ public class ItemDetailsPresenter implements ItemDetailsContract.Presenter, Call
 
     @Override
     public void onFailure(Call<ItemRequest> call, Throwable t) {
-        mView.showError();
+        if (mView != null) {
+            mView.showError();
+        }
     }
 }

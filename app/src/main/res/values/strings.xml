@@ -6,4 +6,12 @@
     <string name="loading_data">Buscando dados...</string>
     <string name="no_data">Não há dados disponíveis no momento.</string>
     <string name="error">Ocorreu um erro ao buscar dados. Tente novamente mais tarde</string>
+    <string name="meal_date">Refeição de %1$s</string>
+    <string name="meal_kcal">%1$.3f KCal</string>
+    <string name="kcal">Cal</string>
+    <string name="carb">Carb</string>
+    <string name="protein">Prot</string>
+    <string name="fats">Gord</string>
+    <string name="string_float">%1$.3f</string>
+    <string name="total">Total Consumido</string>
 </resources>

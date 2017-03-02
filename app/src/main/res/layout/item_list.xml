@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/image_place_holder_background"
-            android:minHeight="300dp" />
+            android:minHeight="250dp" />
 
 
         <LinearLayout

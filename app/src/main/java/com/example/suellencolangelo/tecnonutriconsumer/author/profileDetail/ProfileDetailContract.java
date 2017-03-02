@@ -17,6 +17,7 @@ public class ProfileDetailContract {
 
     // Implementado pelo Presenter
     interface Presenter {
+        void setView(ProfileDetailContract.View view);
         void retrieveProfile();
         void retrieveOldProfileItems();
         int itemCount();

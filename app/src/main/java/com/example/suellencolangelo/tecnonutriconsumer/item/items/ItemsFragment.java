@@ -131,4 +131,16 @@ public class ItemsFragment extends BaseFragment implements ItemContract.View, Sw
         mSwipeLayout.setRefreshing(true);
         mPresenter.retrieveItems();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.setView(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.setView(null);
+    }
 }

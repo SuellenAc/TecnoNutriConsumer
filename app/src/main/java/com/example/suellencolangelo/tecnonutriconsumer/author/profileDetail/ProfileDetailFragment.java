@@ -147,4 +147,16 @@ public class ProfileDetailFragment extends BaseFragment implements ProfileDetail
         mSwipeLayout.setRefreshing(true);
         mPresenter.retrieveProfile();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.setView(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.setView(null);
+    }
 }

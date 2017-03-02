@@ -2,31 +2,49 @@ package com.example.suellencolangelo.tecnonutriconsumer.model;
 
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by suellencolangelo on 26/02/17.
  */
 
 @Parcel(Parcel.Serialization.BEAN)
 public class Item {
-    private String feedHash;
+    private String feedHash = "";
     private Integer id;
     private Profile profile;
     private Integer meal;
-    private String date;
-    private String image;
-    private Float energy;
-    private Float carbohydrate;
-    private Float fat;
-    private Float protein;
-    private Float fatTrans;
-    private Float fatSat;
-    private Float fiber;
-    private Float sugar;
-    private Float sodium;
-    private Float calcium;
-    private Float iron;
-    private Float moderation;
+    private Date date;
+    private String image = "";
+    private Float energy = 0.0f;
+    private Float carbohydrate = 0.0f;
+    private Float fat = 0.0f;
+    private Float protein = 0.0f;
+    private Float fatTrans = 0.0f;
+    private Float fatSat = 0.0f;
+    private Float fiber = 0.0f;
+    private Float sugar = 0.0f;
+    private Float sodium = 0.0f;
+    private Float calcium = 0.0f;
+    private Float iron = 0.0f;
+    private Float moderation = 0.0f;
     private String locale;
+    private List<Food> foods;
+
+    public Item() {
+        foods = new ArrayList<>();
+    }
+
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
 
     public Float getSugar() {
         return sugar;
@@ -44,11 +62,11 @@ public class Item {
         this.carbohydrate = carbohydrate;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
